@@ -2,20 +2,26 @@ namespace DinoGame.UI.Menu
 {
     public enum StoreTab
     {
-        General = 0,
+        Bones = 0,
         Dna = 1,
-        Bones = 2
+        Offer = 2,
+        Free = 3
     }
 
     public sealed class MenuContext
     {
         public static readonly MenuContext Empty = new();
 
-        public StoreTab StoreTab { get; private set; } = StoreTab.General;
+        public StoreTab StoreTab { get; private set; } = StoreTab.Bones;
+        public bool ToggleCloseWhenSameTab { get; private set; } = true;
 
-        public static MenuContext ForStore(StoreTab tab)
+        public static MenuContext ForStore(StoreTab tab, bool toggleCloseWhenSameTab = true)
         {
-            return new MenuContext { StoreTab = tab };
+            return new MenuContext
+            {
+                StoreTab = tab,
+                ToggleCloseWhenSameTab = toggleCloseWhenSameTab
+            };
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using SaveSystem;
 
 public class SplashManager : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class SplashManager : MonoBehaviour
     void Start()
     {
         ShowLoadingScreen(true);
+        GameDataSave gameData = GameDataSave.Load();
+        GameDataSave.Bind(gameData);
+        SaveDataService.Instance.Register(gameData);
+
+        SettingsSave settings = SettingsSave.Load();
+        SettingsSave.Bind(settings);
+        SaveDataService.Instance.Register(settings);
     }
     public void ShowLoadingScreen(bool show)
     {

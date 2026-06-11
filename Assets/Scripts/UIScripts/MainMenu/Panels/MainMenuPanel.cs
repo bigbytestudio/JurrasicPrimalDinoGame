@@ -17,16 +17,10 @@ namespace DinoGame.UI.Menu
         [SerializeField] private Button rateUsButton;
         [SerializeField] private Button dailyMissionButton;
         [SerializeField] private Button dinoSelectionButton;
-        [SerializeField] private Button dnaCurrencyButton;
-        [SerializeField] private Button bonesCurrencyButton;
         [SerializeField] private Button storeButton;
         [SerializeField] private Button settingsButton;
         [SerializeField] private Button discordButton;
         [SerializeField] private Button startButton;
-
-        [Header("Currency Display")]
-        [SerializeField] private Text dnaAmountText;
-        [SerializeField] private Text bonesAmountText;
 
         private MenuManager menuManager;
 
@@ -34,13 +28,11 @@ namespace DinoGame.UI.Menu
         {
             menuManager = manager;
             BindButtons();
-            RefreshCurrencyDisplay();
         }
 
         public void Show()
         {
             gameObject.SetActive(true);
-            RefreshCurrencyDisplay();
         }
 
         public void Hide() => gameObject.SetActive(false);
@@ -54,8 +46,6 @@ namespace DinoGame.UI.Menu
             Bind(rateUsButton, () => menuManager.OpenRateUs());
             Bind(dailyMissionButton, () => menuManager.OpenPanel(MenuPanelId.DailyMission));
             Bind(dinoSelectionButton, () => menuManager.OpenPanel(MenuPanelId.DinoSelection));
-            Bind(dnaCurrencyButton, () => menuManager.OpenPanel(MenuPanelId.Store, MenuContext.ForStore(StoreTab.Dna)));
-            Bind(bonesCurrencyButton, () => menuManager.OpenPanel(MenuPanelId.Store, MenuContext.ForStore(StoreTab.Bones)));
             Bind(storeButton, () => menuManager.OpenPanel(MenuPanelId.Store));
             Bind(settingsButton, () => menuManager.OpenPanel(MenuPanelId.Settings));
             Bind(discordButton, () => menuManager.OpenDiscord());
@@ -69,18 +59,6 @@ namespace DinoGame.UI.Menu
 
             button.onClick.RemoveListener(action);
             button.onClick.AddListener(action);
-        }
-
-        private void RefreshCurrencyDisplay()
-        {
-            int dna = PlayerPrefs.GetInt("DinoGame.DnaCurrency", 0);
-            int bones = PlayerPrefs.GetInt("DinoGame.BonesCurrency", 0);
-
-            if (dnaAmountText != null)
-                dnaAmountText.text = dna.ToString();
-
-            if (bonesAmountText != null)
-                bonesAmountText.text = bones.ToString();
         }
     }
 }

@@ -19,9 +19,12 @@ namespace DinoGame.UI.Menu
         [SerializeField] private MainMenuPanel mainMenuPanel;
         [SerializeField] private Transform panelRoot;
         [SerializeField] private MenuPanelRegistry panelRegistry;
+        [SerializeField] private CurrencyDisplayUI currencyDisplay;
 
         [Header("External Links")]
         [SerializeField] private string moreGamesUrl;
+        [SerializeField] private string termsUrl;
+        [SerializeField] private string supportUrl;
         [SerializeField] private string privacyPolicyUrl;
         [SerializeField] private string rateUsUrl;
         [SerializeField] private string discordUrl;
@@ -45,6 +48,9 @@ namespace DinoGame.UI.Menu
                 panelRoot = transform;
 
             mainMenuPanel?.Initialize(this);
+
+            if (currencyDisplay == null)
+                currencyDisplay = FindObjectOfType<CurrencyDisplayUI>();
         }
 
         private void Start()
@@ -62,6 +68,7 @@ namespace DinoGame.UI.Menu
         {
             CloseCurrentPanel();
             mainMenuPanel?.Show();
+            UpdateCurrencyDisplayVisibility();
         }
 
         public void OpenPanel(MenuPanelId panelId, MenuContext context = null)
@@ -70,6 +77,12 @@ namespace DinoGame.UI.Menu
             {
                 ShowMainMenu();
                 return;
+            }
+
+            if (activeOverlay != null && activeOverlay.PanelId == panelId)
+            {
+                if (TryToggleOrRefreshActivePanel(panelId, context))
+                    return;
             }
 
             if (panelRegistry == null)
@@ -89,6 +102,7 @@ namespace DinoGame.UI.Menu
 
             activeOverlay = AcquirePanel(panelId, entry);
             activeOverlay.OnPanelOpened(context ?? MenuContext.Empty);
+            UpdateCurrencyDisplayVisibility();
         }
 
         public void CloseCurrentPanel()
@@ -99,13 +113,14 @@ namespace DinoGame.UI.Menu
             MenuPanelId panelId = activeOverlay.PanelId;
             activeOverlay.OnPanelClosed();
 
-            if (activeOverlay.DestroyOnClose && !IsCached(panelId))
-                Destroy(activeOverlay.gameObject);
-            else
+            if (IsCached(panelId))
                 activeOverlay.gameObject.SetActive(false);
+            else
+                Destroy(activeOverlay.gameObject);
 
             activeOverlay = null;
             mainMenuPanel?.Show();
+            UpdateCurrencyDisplayVisibility();
         }
 
         public void ExecuteAction(IMenuAction action)
@@ -114,6 +129,10 @@ namespace DinoGame.UI.Menu
         }
 
         public void OpenMoreGames() => ExecuteAction(new MenuUrlAction(moreGamesUrl));
+
+        public void OpenTerms() => ExecuteAction(new MenuUrlAction(termsUrl));
+
+        public void OpenSupport() => ExecuteAction(new MenuUrlAction(supportUrl));
 
         public void OpenPrivacyPolicy() => ExecuteAction(new MenuUrlAction(privacyPolicyUrl));
 
@@ -153,6 +172,37 @@ namespace DinoGame.UI.Menu
         private bool IsCached(MenuPanelId panelId)
         {
             return cachedPanels.ContainsKey(panelId);
+        }
+
+        private bool TryToggleOrRefreshActivePanel(MenuPanelId panelId, MenuContext context)
+        {
+            if (panelId == MenuPanelId.Store && activeOverlay is StorePanel storePanel)
+            {
+                StoreTab requestedTab = context?.StoreTab ?? StoreTab.Bones;
+                if (storePanel.ActiveTab == requestedTab)
+                {
+                    if (context?.ToggleCloseWhenSameTab ?? true)
+                        CloseCurrentPanel();
+
+                    return true;
+                }
+
+                storePanel.OnPanelOpened(context ?? MenuContext.Empty);
+                UpdateCurrencyDisplayVisibility();
+                return true;
+            }
+
+            CloseCurrentPanel();
+            return true;
+        }
+
+        private void UpdateCurrencyDisplayVisibility()
+        {
+            if (currencyDisplay == null)
+                return;
+
+            bool hideForSettings = activeOverlay != null && activeOverlay.PanelId == MenuPanelId.Settings;
+            currencyDisplay.gameObject.SetActive(!hideForSettings);
         }
     }
 }

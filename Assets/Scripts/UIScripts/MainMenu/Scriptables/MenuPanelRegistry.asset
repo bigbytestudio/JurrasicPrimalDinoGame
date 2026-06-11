@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: MenuPanelRegistry
   m_EditorClassIdentifier: Assembly-CSharp::DinoGame.UI.Menu.MenuPanelRegistry
   panels:
-  - panelId: 7
-    prefab: {fileID: 0}
-    cacheInstance: 0
+  - panelId: 8
+    prefab: {fileID: 2036390552087002668, guid: 6b6efa14c8a034a4a8093ec2df4e522e,
+      type: 3}
+    cacheInstance: 1
+  - panelId: 9
+    prefab: {fileID: 6024389629477280531, guid: 67f10b116ef64fa4f8ecd7dddc678a90,
+      type: 3}
+    cacheInstance: 1
