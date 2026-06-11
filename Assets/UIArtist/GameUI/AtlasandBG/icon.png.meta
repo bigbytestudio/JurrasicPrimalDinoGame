@@ -703,7 +703,7 @@ TextureImporter:
         width: 203
         height: 190
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -712,6 +712,72 @@ TextureImporter:
       bones: []
       spriteID: 929b9cbe2fe300b4a8d85701a0a383b5
       internalID: 1765649911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: timerIcon
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 1292
+        width: 202
+        height: 235
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 355418ccb3ca69746ba9380e82eab1ad
+      internalID: 1211199882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinoidleIcon
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 1332
+        width: 253
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b175a677cae4d8749b71d1a123f11d53
+      internalID: 2135570212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dinoFaceIcon
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 1045
+        width: 236
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ae009767894cc4889ef6191ad136cb
+      internalID: 1886802354
       vertices: []
       indices: 
       edges: []
@@ -736,6 +802,8 @@ TextureImporter:
       boneIcon: -1073148533
       circleOutline: -1282095161
       defenseIcon: 1710486518
+      dinoFaceIcon: 1886802354
+      dinoidleIcon: 2135570212
       discordIcon: -1680132162
       dnaIcon: -2069948866
       freeIcon: 658143278
@@ -754,6 +822,7 @@ TextureImporter:
       staminaIcon: 393371758
       storeIcon: -482308775
       tickSign: 1765649911
+      timerIcon: 1211199882
       upgradeIcon: 2006260354
       vibrationIcon: 595821404
       watchADIcon: -516843665

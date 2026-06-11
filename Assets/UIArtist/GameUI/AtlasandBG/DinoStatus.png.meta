@@ -121,12 +121,320 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: growthHeadBG
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1031
+        width: 1973
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fd98d0b9986a9b4db894715be32116b
+      internalID: -713607106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrowthBottomBG
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 13
+        width: 1957
+        height: 992
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e576f65b20113a2438e31db26900f781
+      internalID: 131667485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: growthDiamond
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 1808
+        width: 38
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5497df41ed5cdb42b555849f36f2fab
+      internalID: -578010976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: growthHeadingBG
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 1891
+        width: 460
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01434eaaef0d2ae449c8c242c927a4d1
+      internalID: 1812651334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: smallDInoBG
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 1878
+        width: 169
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83cb33be163520448abd3e5122dbafe7
+      internalID: 1295059531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: largeDinoBG
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 1841
+        width: 271
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2baf532faa7fb8489ffa39f9d52cf6a
+      internalID: -1250333465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Growth_GreenBar_BG
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1743
+        width: 242
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b597250b6e12e248b67ba6ebfe1c9ac
+      internalID: -2094488289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Growth_FillBar_Green
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1728
+        width: 240
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeca4719b2d95104eb99dfbe7c2e9e58
+      internalID: 565790140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Growth_RedBar_BG
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1708
+        width: 242
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f16ce8997a3dee458c8f275eb93b523
+      internalID: 1032374774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DinoStatus_9
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 1693
+        width: 241
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5db718cfa7830af4095d98972b5087f1
+      internalID: 1290749441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Growth_GreyBar_BG
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1673
+        width: 242
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dd0e5594e064d045847bccadcf59e87
+      internalID: -86915897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DinoStatus_11
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1657
+        width: 240
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 363626dbfe49b8f418bb148941a2cbae
+      internalID: -2096121951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Growth_BlueBar_BG
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 1637
+        width: 242
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08e2abb1b899e8b4a82107446891c6d8
+      internalID: -1928194105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DinoStatus_13
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 1620
+        width: 241
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8340ac50f5c51e34dab3b5bc6eaa5f35
+      internalID: -2043892840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a1605501e5f5e144792bbdd8126d8ab6
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +443,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DinoStatus_11: -2096121951
+      DinoStatus_13: -2043892840
+      DinoStatus_9: 1290749441
+      GrowthBottomBG: 131667485
+      Growth_BlueBar_BG: -1928194105
+      Growth_FillBar_Green: 565790140
+      Growth_GreenBar_BG: -2094488289
+      Growth_GreyBar_BG: -86915897
+      Growth_RedBar_BG: 1032374774
+      growthDiamond: -578010976
+      growthHeadBG: -713607106
+      growthHeadingBG: 1812651334
+      largeDinoBG: -1250333465
+      smallDInoBG: 1295059531
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
