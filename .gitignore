@@ -104,3 +104,7 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Large Unity cubemap assets (GitHub file limit is 100 MB)
+*.cubemap
+*.cubemap.meta
