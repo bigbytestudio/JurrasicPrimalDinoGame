@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b24f6c9a66a44244a3803caa2bfad56, type: 3}
+  m_Name: AIConfig
+  m_EditorClassIdentifier: DinoGame::DinoGame.Data.AIConfig
+  thinkInterval: 0.2
+  attackDistance: 2
+  combatStandOffBuffer: 0.5
+  chaseDistance: 20
+  chaseLoseBuffer: 8
+  maxChaseTime: 20
+  loseSightGraceTime: 4
+  growlSkipSpeed: 6
+  proximityDetectionRadius: 10
+  movingTargetSenseSpeed: 5
+  fleeHealthPercent: 0.2
+  woundedHealthPercent: 0.4
+  woundedMinSpeedMultiplier: 0.32
+  attacksDifferentTeams: 1
+  patrolWaitTime: 2
+  patrolPointReachDistance: 1.5
+  patrolRunChance: 0.701

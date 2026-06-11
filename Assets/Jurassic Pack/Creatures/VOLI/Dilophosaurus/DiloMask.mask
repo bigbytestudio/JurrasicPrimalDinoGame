@@ -1,0 +1,248 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DiloMask
+  m_Mask: 00000000010000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Dilo
+    m_Weight: 1
+  - m_Path: Dilo/root
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Left
+      Crest3
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Left
+      Crest3/Left Crest8
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Left
+      Crest2
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Left
+      Crest2/Left Crest7
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Right
+      Crest4
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Right
+      Crest4/Right Crest9
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Right
+      Crest2
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Right
+      Crest2/Right Crest7
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Right
+      Crest1
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Right
+      Crest1/Right Crest6
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Left
+      Crest1
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Left
+      Crest1/Left Crest6
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Right
+      Crest3
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Right
+      Crest3/Right Crest8
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/jaw0
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/jaw0/jaw1
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/jaw0/tongue0
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/jaw0/tongue0/tongue1
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/jaw0/tongue0/tongue1/tongue2
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Right
+      Crest5
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Right
+      Crest5/Right Crest10
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Left
+      Crest4
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Left
+      Crest4/Left Crest9
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/eye0
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/eye0/right
+      eye
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/eye0/facial
+      down
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/eye0/facial
+      left
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/eye0/facial
+      right
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/eye0/left
+      eye
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Left
+      Crest5
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/neck0/neck1/neck2/neck3/head/Left
+      Crest5/Left Crest10
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/left arm0
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/left arm0/left arm1
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/left arm0/left arm1/left
+      hand
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/left arm0/left arm1/left
+      hand/left finger3
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/left arm0/left arm1/left
+      hand/left finger3/left finger4
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/left arm0/left arm1/left
+      hand/left finger3/left finger4/left finger5
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/right arm0
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/right arm0/right
+      arm1
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/right arm0/right
+      arm1/right hand
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/right arm0/right
+      arm1/right hand/right finger3
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/right arm0/right
+      arm1/right hand/right finger3/right finger4
+    m_Weight: 1
+  - m_Path: Dilo/root/spine0/spine1/spine2/spine3/spine4/spine5/right arm0/right
+      arm1/right hand/right finger3/right finger4/right finger5
+    m_Weight: 1
+  - m_Path: Dilo/root/pelvis
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1/tail2
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1/tail2/tail3
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1/tail2/tail3/tail4
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1/tail2/tail3/tail4/tail5
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1/tail2/tail3/tail4/tail5/tail6
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1/tail2/tail3/tail4/tail5/tail6/tail7
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1/tail2/tail3/tail4/tail5/tail6/tail7/tail8
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1/tail2/tail3/tail4/tail5/tail6/tail7/tail8/tail9
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1/tail2/tail3/tail4/tail5/tail6/tail7/tail8/tail9/tail10
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/tail0/tail1/tail2/tail3/tail4/tail5/tail6/tail7/tail8/tail9/tail10/tail11
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0/left leg1
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0/left leg1/left foot0
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0/left leg1/left foot0/left foot1
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0/left leg1/left foot0/left foot1/left foot2
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0/left leg1/left foot0/left foot1/left foot2/left
+      toe3
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0/left leg1/left foot0/left foot1/left foot2/left
+      toe3/left toe4
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0/left leg1/left foot0/left foot1/left foot2/left
+      toe3/left toe4/left toe5
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0/left leg1/left foot0/left foot1/left foot2/left
+      toe0
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0/left leg1/left foot0/left foot1/left foot2/left
+      toe0/left toe1
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/left leg0/left leg1/left foot0/left foot1/left foot2/left
+      toe0/left toe1/left toe2
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0/right leg1
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0/right leg1/right foot0
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0/right leg1/right foot0/right foot1
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0/right leg1/right foot0/right foot1/right
+      foot2
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0/right leg1/right foot0/right foot1/right
+      foot2/right toe3
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0/right leg1/right foot0/right foot1/right
+      foot2/right toe3/right toe4
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0/right leg1/right foot0/right foot1/right
+      foot2/right toe3/right toe4/right toe5
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0/right leg1/right foot0/right foot1/right
+      foot2/right toe0
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0/right leg1/right foot0/right foot1/right
+      foot2/right toe0/right toe1
+    m_Weight: 0
+  - m_Path: Dilo/root/pelvis/right leg0/right leg1/right foot0/right foot1/right
+      foot2/right toe0/right toe1/right toe2
+    m_Weight: 0
+  - m_Path: dilo_LOD_0
+    m_Weight: 0
+  - m_Path: dilo_LOD_1
+    m_Weight: 0
+  - m_Path: dilo_LOD_2
+    m_Weight: 0

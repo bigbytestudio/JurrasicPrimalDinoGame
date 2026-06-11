@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b3f030196a3204298f12aa5a53e684, type: 3}
+  m_Name: Dilo_Profile
+  m_EditorClassIdentifier: DinoGame::DinoGame.Data.CreatureProfile
+  creatureId: Dilo
+  displayName: Dilophosaurus
+  defaultTeam: 0
+  prefab: {fileID: 2680474171029873890, guid: 92e674b834cf1eb4f82169d64f1edcf8, type: 3}
+  maxHealth: 100
+  stamina: 100
+  moveSpeed: 6
+  sprintSpeed: 25
+  turnSpeed: 500
+  detectionRadius: 18
+  fieldOfView: 140
+  movementStrategy: {fileID: 11400000, guid: f124244ec5a21c54b911d66f7ee9a91c, type: 2}
+  attackStrategies:
+  - {fileID: 11400000, guid: 1b43bc08a22413548a4ea462e4c43f0c, type: 2}
+  aiStrategy: {fileID: 0}
+  perceptionStrategy: {fileID: 11400000, guid: ee846111cbd5f64428f7a7c5f4c4f12c, type: 2}
