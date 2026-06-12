@@ -19,6 +19,7 @@ public class LoadingScreen : MonoBehaviour
             activeTime = 0;
             SceneManager.LoadScene("MainMenu");
             SceneManager.LoadScene("MainMenuEnv", LoadSceneMode.Additive);
+            
         }
     }
 

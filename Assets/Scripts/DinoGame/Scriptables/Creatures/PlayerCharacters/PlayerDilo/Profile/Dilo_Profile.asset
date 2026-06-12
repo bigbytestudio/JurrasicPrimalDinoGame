@@ -14,8 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: DinoGame::DinoGame.Data.CreatureProfile
   creatureId: Dilo
   displayName: Dilophosaurus
+  creatureCode: BAY-001
+  unlockedByDefault: 1
+  bonePurchaseCost: 500
   defaultTeam: 0
   prefab: {fileID: 2680474171029873890, guid: 92e674b834cf1eb4f82169d64f1edcf8, type: 3}
+  previewIcon: {fileID: 21300000, guid: 75586b8fd91a53a42a7246229fd5ae64, type: 3}
+  infamyLevel: 40
+  infamyTierLabel: HARMLESS
+  attackPercent: 74
+  defensePercent: 58
+  staminaPercent: 79
+  growthLevel: 1
+  maxGrowthLevel: 4
+  growthUpgradeDnaCost: 15
+  growthStageLabel: DEVELOPMENT STAGE
   maxHealth: 100
   stamina: 100
   moveSpeed: 6

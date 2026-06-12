@@ -21,3 +21,10 @@ MonoBehaviour:
     prefab: {fileID: 6024389629477280531, guid: 67f10b116ef64fa4f8ecd7dddc678a90,
       type: 3}
     cacheInstance: 1
+  - panelId: 2
+    prefab: {fileID: 6097965329671751195, guid: c95a4230127d1984e852dc4bdc13478f,
+      type: 3}
+    cacheInstance: 1
+  - panelId: 7
+    prefab: {fileID: 573924346521912053, guid: 62dd4a61c965caf4696b3681bcb3ce00, type: 3}
+    cacheInstance: 1

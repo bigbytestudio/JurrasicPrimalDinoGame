@@ -79,6 +79,11 @@ namespace DinoGame.Spawn
                 Instance = null;
         }
 
+        public CreatureProfile[] GetSelectablePlayerProfiles()
+        {
+            return selectablePlayerProfiles ?? System.Array.Empty<CreatureProfile>();
+        }
+
         public void SelectPlayerProfile(CreatureProfile profile, bool persistSelection = true)
         {
             if (profile == null)
