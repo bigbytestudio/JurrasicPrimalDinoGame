@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,11 +23,22 @@ namespace DinoGame.UI.Menu
         [SerializeField] private float unselectedScale = 1f;
         [SerializeField] private float scaleDuration = 0.2f;
 
+        [Header("IAP Catalog")]
+        [SerializeField] private StoreIapCatalog iapCatalog;
+
+        [Header("Card Domino")]
+        [SerializeField] private bool playCardDomino = true;
+        [SerializeField] private float cardDominoStagger = 0.08f;
+        [SerializeField] private float cardDominoDuration = 0.4f;
+        [SerializeField] private float cardDominoStartRotation = 18f;
+
         [Header("Panel")]
         [SerializeField] private Button closeButton;
 
         private readonly List<StoreTabConfig> runtimeTabs = new();
+        private readonly List<RectTransform> animatedStoreCards = new();
         private StoreTabConfig activeTabConfig;
+        private Coroutine cardDominoRoutine;
 
         public override MenuPanelId PanelId => MenuPanelId.Store;
         public StoreTab ActiveTab { get; private set; }
@@ -40,8 +52,15 @@ namespace DinoGame.UI.Menu
             BindTabButtons();
         }
 
+        private void OnDisable()
+        {
+            StopCardDomino();
+        }
+
         private void OnDestroy()
         {
+            StopCardDomino();
+
             for (int i = 0; i < runtimeTabs.Count; i++)
             {
                 StoreTabConfig tab = runtimeTabs[i];
@@ -188,6 +207,72 @@ namespace DinoGame.UI.Menu
                 float scale = isSelected ? selectedScale : unselectedScale;
                 StoreTabTween.AnimateScale(tab.ScaleTransform, scale, scaleDuration, animateSelectedScale);
             }
+
+            PopulateIapCards(selected);
+
+            if (ShouldPlayCardDomino(selected.tab) && selected.contentPanel != null)
+                PlayCardDomino(selected.contentPanel.transform);
+        }
+
+        private void PopulateIapCards(StoreTabConfig tabConfig)
+        {
+            if (iapCatalog == null || tabConfig?.contentPanel == null)
+                return;
+
+            if (tabConfig.tab != StoreTab.Bones && tabConfig.tab != StoreTab.Dna)
+                return;
+
+            StoreIapOffer[] offers = tabConfig.tab == StoreTab.Bones
+                ? iapCatalog.BonesOffers
+                : iapCatalog.DnaOffers;
+
+            StoreIapCardBinder.BindPanel(tabConfig.contentPanel.transform, offers);
+        }
+
+        private static bool ShouldPlayCardDomino(StoreTab tab)
+        {
+            return tab == StoreTab.Bones || tab == StoreTab.Dna;
+        }
+
+        private void PlayCardDomino(Transform panelRoot)
+        {
+            if (!playCardDomino || panelRoot == null)
+                return;
+
+            if (cardDominoRoutine != null)
+                StopCoroutine(cardDominoRoutine);
+
+            cardDominoRoutine = StartCoroutine(PlayCardDominoRoutine(panelRoot));
+        }
+
+        private IEnumerator PlayCardDominoRoutine(Transform panelRoot)
+        {
+            yield return null;
+
+            StopCardDomino(keepRoutine: true);
+
+            List<RectTransform> cards = UIDominoTween.CollectStoreCards(panelRoot);
+            animatedStoreCards.AddRange(cards);
+
+            UIDominoTween.Play(
+                cards,
+                cardDominoStagger,
+                cardDominoDuration,
+                cardDominoStartRotation);
+
+            cardDominoRoutine = null;
+        }
+
+        private void StopCardDomino(bool keepRoutine = false)
+        {
+            if (!keepRoutine && cardDominoRoutine != null)
+            {
+                StopCoroutine(cardDominoRoutine);
+                cardDominoRoutine = null;
+            }
+
+            UIDominoTween.Kill(animatedStoreCards);
+            animatedStoreCards.Clear();
         }
 
         private StoreTabConfig FindTab(StoreTab tab)

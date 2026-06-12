@@ -7,10 +7,16 @@ public class GameDataSave : SaveableBase<GameDataSave>
 {
     public static GameDataSave Instance { get; private set; }
     public static event Action CurrencyChanged;
+    public static event Action ProfileStatsChanged;
 
     public string playerName;
     public int dnaCurrency;
     public int bonesCurrency;
+    public int totalDinoKills;
+    public float totalPlayTimeSeconds;
+    public int playerRank = 1;
+    public int playerXp;
+    public int xpPerRank = 100;
     public string[] unlockedCreatureIds = Array.Empty<string>();
     public CreatureGrowthSaveEntry[] creatureGrowthLevels = Array.Empty<CreatureGrowthSaveEntry>();
 
@@ -21,6 +27,11 @@ public class GameDataSave : SaveableBase<GameDataSave>
         playerName = "Player";
         dnaCurrency = 0;
         bonesCurrency = 0;
+        totalDinoKills = 0;
+        totalPlayTimeSeconds = 0f;
+        playerRank = 1;
+        playerXp = 0;
+        xpPerRank = 100;
         unlockedCreatureIds = Array.Empty<string>();
         creatureGrowthLevels = Array.Empty<CreatureGrowthSaveEntry>();
     }
@@ -102,7 +113,7 @@ public class GameDataSave : SaveableBase<GameDataSave>
 
         updated[length] = creatureId;
         unlockedCreatureIds = updated;
-        Save();
+        NotifyProfileStatsChanged();
     }
 
     public static void Bind(GameDataSave data)
@@ -121,6 +132,20 @@ public class GameDataSave : SaveableBase<GameDataSave>
     {
         bonesCurrency = Mathf.Max(0, amount);
         NotifyCurrencyChanged();
+    }
+
+    public void SetPlayerName(string name)
+    {
+        const int maxLength = 20;
+        string trimmed = string.IsNullOrWhiteSpace(name) ? "Player" : name.Trim();
+        if (trimmed.Length > maxLength)
+            trimmed = trimmed.Substring(0, maxLength);
+
+        if (playerName == trimmed)
+            return;
+
+        playerName = trimmed;
+        NotifyProfileStatsChanged();
     }
 
     public void AddDnaCurrency(int amount)
@@ -143,6 +168,73 @@ public class GameDataSave : SaveableBase<GameDataSave>
     {
         Save();
         CurrencyChanged?.Invoke();
+    }
+
+    public void AddPlayTime(float seconds)
+    {
+        if (seconds <= 0f)
+            return;
+
+        totalPlayTimeSeconds += seconds;
+        NotifyProfileStatsChanged();
+    }
+
+    public void RegisterPlayerKill(int xpReward = 10)
+    {
+        totalDinoKills++;
+        AddPlayerXp(xpReward);
+    }
+
+    public void AddPlayerXp(int amount)
+    {
+        if (amount <= 0)
+            return;
+
+        playerXp += amount;
+        while (playerXp >= xpPerRank)
+        {
+            playerXp -= xpPerRank;
+            playerRank++;
+        }
+
+        NotifyProfileStatsChanged();
+    }
+
+    public int GetUnlockedCreatureCount()
+    {
+        return unlockedCreatureIds?.Length ?? 0;
+    }
+
+    public float GetRankProgress01()
+    {
+        if (xpPerRank <= 0)
+            return 1f;
+
+        return Mathf.Clamp01(playerXp / (float)xpPerRank);
+    }
+
+    public int GetDnaBonusPercent(int totalCreatures)
+    {
+        if (totalCreatures <= 0)
+            return 0;
+
+        int unlocked = GetUnlockedCreatureCount();
+        return Mathf.Clamp(unlocked * 5, 0, 50);
+    }
+
+    public int GetBonesBonusPercent(int totalCreatures)
+    {
+        if (totalCreatures <= 0)
+            return 0;
+
+        int unlocked = GetUnlockedCreatureCount();
+        return Mathf.Clamp(unlocked * 3, 0, 30);
+    }
+
+    private void NotifyProfileStatsChanged()
+    {
+        Save();
+        ProfileStatsChanged?.Invoke();
     }
 }
 

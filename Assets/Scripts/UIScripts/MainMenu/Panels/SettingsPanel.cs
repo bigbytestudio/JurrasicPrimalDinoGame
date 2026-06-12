@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using SaveSystem;
 using TMPro;
 using UnityEngine;
@@ -33,6 +34,16 @@ namespace DinoGame.UI.Menu
         [Header("Panel")]
         [SerializeField] private Button closeButton;
 
+        [Header("Row Reveal")]
+        [SerializeField] private bool playRowReveal = true;
+        [SerializeField] private UIStaggerStyle revealStyle = UIStaggerStyle.SlideUp;
+        [SerializeField] private float revealStagger = 0.06f;
+        [SerializeField] private float revealDuration = 0.42f;
+        [SerializeField] private float revealSlideOffset = 36f;
+        [SerializeField] private float revealTopBarSlideOffset = 28f;
+        [SerializeField] private float revealStartScale = 0.94f;
+
+        private readonly List<RectTransform> animatedRows = new();
         private bool suppressEvents;
 
         public override MenuPanelId PanelId => MenuPanelId.Settings;
@@ -55,11 +66,19 @@ namespace DinoGame.UI.Menu
         public override void OnPanelOpened(MenuContext context)
         {
             base.OnPanelOpened(context);
+            PrepareRevealBeforeFirstFrame();
             RefreshFromSave();
+            PlayRowReveal();
+        }
+
+        private void OnDisable()
+        {
+            StopRowReveal();
         }
 
         private void OnDestroy()
         {
+            StopRowReveal();
             UnbindAudioSliders();
         }
 
@@ -253,6 +272,95 @@ namespace DinoGame.UI.Menu
         {
             Transform target = root.Find(path);
             return target != null ? target.GetComponent<T>() : null;
+        }
+
+        private void PrepareRevealBeforeFirstFrame()
+        {
+            if (!playRowReveal)
+                return;
+
+            StopRowReveal();
+
+            List<RectTransform> rows = CollectAnimationTargets();
+            animatedRows.AddRange(rows);
+            UIDominoTween.PrepareHidden(rows, BuildRevealConfig());
+        }
+
+        private void PlayRowReveal()
+        {
+            if (!playRowReveal)
+                return;
+
+            if (animatedRows.Count == 0)
+                PrepareRevealBeforeFirstFrame();
+
+            UIDominoTween.Play(animatedRows, BuildRevealConfig());
+        }
+
+        private UIStaggerConfig BuildRevealConfig()
+        {
+            if (revealStyle == UIStaggerStyle.SlideUp)
+            {
+                return UIStaggerConfig.SlideUp(
+                    revealStagger,
+                    revealDuration,
+                    revealSlideOffset,
+                    revealStartScale,
+                    revealTopBarSlideOffset,
+                    firstItemSlidesFromAbove: true);
+            }
+
+            return UIStaggerConfig.Domino(revealStagger, revealDuration);
+        }
+
+        private void StopRowReveal()
+        {
+            UIDominoTween.Kill(animatedRows);
+            animatedRows.Clear();
+        }
+
+        private List<RectTransform> CollectAnimationTargets()
+        {
+            List<RectTransform> rows = new();
+            Transform root = transform;
+
+            AddRowIfFound(rows, root, "TopBar");
+            AddRowIfFound(rows, root, "MusicRow");
+            AddRowIfFound(rows, root, "SoundRow");
+            AddRowIfFound(rows, root, "Graphics");
+            AddRowIfFound(rows, root, "Vibration");
+            AppendActiveChildren(rows, root.Find("Accounts"));
+
+            return rows;
+        }
+
+        private static void AddRowIfFound(List<RectTransform> rows, Transform root, string path)
+        {
+            Transform target = root.Find(path);
+            if (target is RectTransform rect)
+                rows.Add(rect);
+        }
+
+        private static void AppendActiveChildren(List<RectTransform> rows, Transform parent)
+        {
+            if (parent == null)
+                return;
+
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                Transform child = parent.GetChild(i);
+                if (!child.gameObject.activeInHierarchy)
+                    continue;
+
+                if (child.name is "BG" or "icon")
+                    continue;
+
+                if (child is not RectTransform rect)
+                    continue;
+
+                if (child.name == "titleHeading" || child.TryGetComponent<Button>(out _))
+                    rows.Add(rect);
+            }
         }
     }
 }

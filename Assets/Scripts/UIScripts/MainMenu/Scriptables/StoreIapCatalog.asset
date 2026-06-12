@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a8c1e23b5d4f7a9c2e8d1f6b3a7045, type: 3}
+  m_Name: StoreIapCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::DinoGame.UI.Menu.StoreIapCatalog
+  bonesOffers:
+  - cardId: starter_1
+    heading: STARTER BONE
+    priceDisplay: $0.99
+    amount: 500
+    storeProductId: bones_starter_1
+  - cardId: starter_2
+    heading: BONE PACK
+    priceDisplay: $1.99
+    amount: 1200
+    storeProductId: bones_starter_2
+  - cardId: starter_3
+    heading: BONE BUNDLE
+    priceDisplay: $3.99
+    amount: 2800
+    storeProductId: bones_starter_3
+  - cardId: starter_4
+    heading: BONE CRATE
+    priceDisplay: $7.99
+    amount: 6500
+    storeProductId: bones_starter_4
+  - cardId: starter_5
+    heading: BONE VAULT
+    priceDisplay: $14.99
+    amount: 15000
+    storeProductId: bones_starter_5
+  dnaOffers:
+  - cardId: starter_1
+    heading: STARTER DNA
+    priceDisplay: $0.99
+    amount: 250
+    storeProductId: dna_starter_1
+  - cardId: starter_2
+    heading: DNA PACK
+    priceDisplay: $1.99
+    amount: 600
+    storeProductId: dna_starter_2
+  - cardId: starter_3
+    heading: DNA BUNDLE
+    priceDisplay: $3.99
+    amount: 1400
+    storeProductId: dna_starter_3
+  - cardId: starter_4
+    heading: DNA CRATE
+    priceDisplay: $7.99
+    amount: 3200
+    storeProductId: dna_starter_4
+  - cardId: starter_5
+    heading: DNA VAULT
+    priceDisplay: $14.99
+    amount: 7500
+    storeProductId: dna_starter_5

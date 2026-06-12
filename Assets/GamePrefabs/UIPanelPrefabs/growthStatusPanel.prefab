@@ -1895,6 +1895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4558248763483153413}
   - component: {fileID: 5509632102303178010}
+  - component: {fileID: 5509632102303178011}
   m_Layer: 5
   m_Name: growthStatusPanel
   m_TagString: Untagged
@@ -1936,7 +1937,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinoGame.UI.Menu.DinoGrowthPanel
   closeButton: {fileID: 926109451645864611}
-  creatureNameText: {fileID: 1585410740223333176}
+  upgradeGrowthButton: {fileID: 0}
+  panelView: {fileID: 5509632102303178011}
+--- !u!114 &5509632102303178011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2584157151748567385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c8e2f1a9d63c7450e8b1a2f3d4e5c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DinoGame.UI.Menu.DinoGrowthPanelView
+  fillAnimDuration: 0.65
+  fillStagger: 0.07
+  glowPulseScale: 0.03
+  glowPulseSpeed: 10
 --- !u!1 &2737671331473308553
 GameObject:
   m_ObjectHideFlags: 0

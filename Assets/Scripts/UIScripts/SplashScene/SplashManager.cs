@@ -1,15 +1,20 @@
 using UnityEngine;
 using SaveSystem;
+using DinoGame.Data;
+using DinoGame.UI.Menu;
 
 public class SplashManager : MonoBehaviour
 {
-   
     public GameObject loadingScreen;
 
     public GameObject privacyPolicyPanel;
 
+    [SerializeField] private CreatureRegistry creatureRegistryPrefab;
+
     void Start()
     {
+        EnsureCreatureRegistry();
+        EnsurePlayerProfileStatsTracker();
         ShowLoadingScreen(true);
         GameDataSave gameData = GameDataSave.Load();
         GameDataSave.Bind(gameData);
@@ -26,10 +31,24 @@ public class SplashManager : MonoBehaviour
     }
 
 
-    public void ShowPrivacyPolicyPanel(bool show){
+    public void ShowPrivacyPolicyPanel(bool show)
+    {
         privacyPolicyPanel.SetActive(show);
     }
 
-   
+    private void EnsureCreatureRegistry()
+    {
+        if (CreatureRegistry.Instance != null)
+            return;
 
+        if (creatureRegistryPrefab != null)
+            Instantiate(creatureRegistryPrefab);
+        else
+            CreatureRegistry.EnsureExists();
+    }
+
+    private void EnsurePlayerProfileStatsTracker()
+    {
+        PlayerProfileStatsTracker.EnsureExists();
+    }
 }

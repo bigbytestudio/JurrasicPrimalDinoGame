@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,8 +30,14 @@ namespace DinoGame.UI.Menu
         [SerializeField] private string rateUsUrl;
         [SerializeField] private string discordUrl;
 
+        [Header("Rate Us Prompt")]
+        [SerializeField] private bool enableRandomRateUsPrompt = true;
+        [SerializeField, Range(0f, 1f)] private float rateUsPromptChance = 0.35f;
+        [SerializeField] private float rateUsPromptDelay = 0.65f;
+
         private readonly Dictionary<MenuPanelId, UIPanelBase> cachedPanels = new();
         private UIPanelBase activeOverlay;
+        private Coroutine rateUsPromptRoutine;
 
         public MainMenuPanel MainMenu => mainMenuPanel;
 
@@ -56,10 +63,14 @@ namespace DinoGame.UI.Menu
         private void Start()
         {
             ShowMainMenu();
+            TryScheduleRateUsPrompt();
         }
 
         private void OnDestroy()
         {
+            if (rateUsPromptRoutine != null)
+                StopCoroutine(rateUsPromptRoutine);
+
             if (Instance == this)
                 Instance = null;
         }
@@ -97,15 +108,11 @@ namespace DinoGame.UI.Menu
                 return;
             }
 
-            CloseCurrentPanel();
-            mainMenuPanel?.Hide();
-
-            activeOverlay = AcquirePanel(panelId, entry);
-            activeOverlay.OnPanelOpened(context ?? MenuContext.Empty);
-            UpdateCurrencyDisplayVisibility();
+            CloseCurrentPanel(showMainMenu: false);
+            PresentOverlayPanel(panelId, context ?? MenuContext.Empty, entry);
         }
 
-        public void CloseCurrentPanel()
+        public void CloseCurrentPanel(bool showMainMenu = true)
         {
             if (activeOverlay == null)
                 return;
@@ -119,7 +126,31 @@ namespace DinoGame.UI.Menu
                 Destroy(activeOverlay.gameObject);
 
             activeOverlay = null;
-            mainMenuPanel?.Show();
+
+            if (showMainMenu)
+                mainMenuPanel?.Show();
+
+            UpdateCurrencyDisplayVisibility();
+        }
+
+        private void PresentOverlayPanel(MenuPanelId panelId, MenuContext context, MenuPanelRegistry.PanelEntry entry)
+        {
+            if (mainMenuPanel != null && mainMenuPanel.gameObject.activeInHierarchy)
+            {
+                mainMenuPanel.Hide(() => OpenOverlayAfterMainMenuHidden(panelId, context, entry));
+                return;
+            }
+
+            OpenOverlayAfterMainMenuHidden(panelId, context, entry);
+        }
+
+        private void OpenOverlayAfterMainMenuHidden(
+            MenuPanelId panelId,
+            MenuContext context,
+            MenuPanelRegistry.PanelEntry entry)
+        {
+            activeOverlay = AcquirePanel(panelId, entry);
+            activeOverlay.OnPanelOpened(context);
             UpdateCurrencyDisplayVisibility();
         }
 
@@ -148,8 +179,35 @@ namespace DinoGame.UI.Menu
                 return;
             }
 
+            MenuSessionContext.MarkLeftForGameplay();
             SceneManager.LoadScene(gameplaySceneName);
             SceneManager.LoadScene("GamePlayEnv", LoadSceneMode.Additive);
+        }
+
+        private void TryScheduleRateUsPrompt()
+        {
+            if (!enableRandomRateUsPrompt)
+                return;
+
+            if (!MenuSessionContext.TryConsumeReturnFromGameplay())
+                return;
+
+            if (Random.value > rateUsPromptChance)
+                return;
+
+            if (rateUsPromptRoutine != null)
+                StopCoroutine(rateUsPromptRoutine);
+
+            rateUsPromptRoutine = StartCoroutine(ShowRateUsPromptRoutine());
+        }
+
+        private IEnumerator ShowRateUsPromptRoutine()
+        {
+            if (rateUsPromptDelay > 0f)
+                yield return new WaitForSeconds(rateUsPromptDelay);
+
+            RateUsPopupController.Show();
+            rateUsPromptRoutine = null;
         }
 
         private UIPanelBase AcquirePanel(MenuPanelId panelId, MenuPanelRegistry.PanelEntry entry)
@@ -201,8 +259,11 @@ namespace DinoGame.UI.Menu
             if (currencyDisplay == null)
                 return;
 
-            bool hideForSettings = activeOverlay != null && activeOverlay.PanelId == MenuPanelId.Settings;
-            currencyDisplay.gameObject.SetActive(!hideForSettings);
+            bool hideCurrency = activeOverlay != null
+                && (activeOverlay.PanelId == MenuPanelId.Settings
+                    || activeOverlay.PanelId == MenuPanelId.Profile);
+
+            currencyDisplay.gameObject.SetActive(!hideCurrency);
         }
     }
 }

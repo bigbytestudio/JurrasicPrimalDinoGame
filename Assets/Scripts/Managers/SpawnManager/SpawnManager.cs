@@ -15,7 +15,7 @@ namespace DinoGame.Spawn
     [DisallowMultipleComponent]
     public sealed class SpawnManager : MonoBehaviour
     {
-        public const string SelectedCreaturePrefsKey = "DinoGame.SelectedCreatureId";
+        public const string SelectedCreaturePrefsKey = SelectedCreatureUtility.SelectedCreaturePrefsKey;
 
         public static SpawnManager Instance { get; private set; }
 
@@ -81,7 +81,7 @@ namespace DinoGame.Spawn
 
         public CreatureProfile[] GetSelectablePlayerProfiles()
         {
-            return selectablePlayerProfiles ?? System.Array.Empty<CreatureProfile>();
+            return ResolveCreatureCatalog();
         }
 
         public void SelectPlayerProfile(CreatureProfile profile, bool persistSelection = true)
@@ -101,17 +101,11 @@ namespace DinoGame.Spawn
 
         public void SelectPlayerProfileById(string creatureId, bool persistSelection = true)
         {
-            if (selectablePlayerProfiles == null)
-                return;
-
-            for (int i = 0; i < selectablePlayerProfiles.Length; i++)
+            CreatureProfile profile = FindProfileById(creatureId);
+            if (profile != null)
             {
-                CreatureProfile profile = selectablePlayerProfiles[i];
-                if (profile != null && profile.creatureId == creatureId)
-                {
-                    SelectPlayerProfile(profile, persistSelection);
-                    return;
-                }
+                SelectPlayerProfile(profile, persistSelection);
+                return;
             }
 
             Debug.LogWarning($"SpawnManager could not find a player CreatureProfile with id '{creatureId}'.", this);
@@ -119,10 +113,11 @@ namespace DinoGame.Spawn
 
         public void SelectPlayerProfileByIndex(int index, bool persistSelection = true)
         {
-            if (selectablePlayerProfiles == null || index < 0 || index >= selectablePlayerProfiles.Length)
+            CreatureProfile[] catalog = ResolveCreatureCatalog();
+            if (index < 0 || index >= catalog.Length)
                 return;
 
-            SelectPlayerProfile(selectablePlayerProfiles[index], persistSelection);
+            SelectPlayerProfile(catalog[index], persistSelection);
         }
 
         public CoreCreature SpawnPlayer(CreatureProfile profileOverride = null)
@@ -235,8 +230,40 @@ namespace DinoGame.Spawn
                     return;
             }
 
+            CreatureProfile[] catalog = ResolveCreatureCatalog();
+            if (catalog.Length > 0)
+                SelectPlayerProfile(catalog[0], persistSelection: false);
+        }
+
+        private CreatureProfile[] ResolveCreatureCatalog()
+        {
             if (selectablePlayerProfiles != null && selectablePlayerProfiles.Length > 0)
-                SelectPlayerProfile(selectablePlayerProfiles[0], persistSelection: false);
+                return selectablePlayerProfiles;
+
+            if (CreatureRegistry.Instance != null)
+                return CreatureRegistry.Instance.Creatures;
+
+            return System.Array.Empty<CreatureProfile>();
+        }
+
+        private CreatureProfile FindProfileById(string creatureId)
+        {
+            if (string.IsNullOrWhiteSpace(creatureId))
+                return null;
+
+            if (selectablePlayerProfiles != null)
+            {
+                for (int i = 0; i < selectablePlayerProfiles.Length; i++)
+                {
+                    CreatureProfile profile = selectablePlayerProfiles[i];
+                    if (profile != null && profile.creatureId == creatureId)
+                        return profile;
+                }
+            }
+
+            return CreatureRegistry.Instance != null
+                ? CreatureRegistry.Instance.FindById(creatureId)
+                : null;
         }
 
         private void ResolveZones()

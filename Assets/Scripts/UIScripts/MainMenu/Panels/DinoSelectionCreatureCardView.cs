@@ -41,11 +41,7 @@ namespace DinoGame.UI.Menu
             if (creatureNameText != null)
                 creatureNameText.text = profile != null ? profile.displayName : string.Empty;
 
-            if (previewIconImage != null && profile != null && profile.previewIcon != null)
-            {
-                previewIconImage.sprite = profile.previewIcon;
-                previewIconImage.enabled = true;
-            }
+            CreaturePortraitUtility.ApplyCardPortrait(previewIconImage, profile);
 
             RefreshLockState();
         }

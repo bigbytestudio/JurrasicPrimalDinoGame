@@ -1560,10 +1560,15 @@ MonoBehaviour:
     contentPanel: {fileID: 6362956396615792925}
     scaleTarget: {fileID: 4274506350048122643}
   defaultTab: 0
+  iapCatalog: {fileID: 11400000, guid: c7d1f2a38e4b5c9d0a6e3f1b7c8d2940, type: 2}
   animateSelectedScale: 1
   selectedScale: 1.08
   unselectedScale: 1
   scaleDuration: 0.2
+  playCardDomino: 1
+  cardDominoStagger: 0.08
+  cardDominoDuration: 0.4
+  cardDominoStartRotation: 18
   closeButton: {fileID: 7774150745367681834}
 --- !u!1 &1361800424349189991
 GameObject:
@@ -10599,8 +10604,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 170.31035, y: 0}
-  m_SizeDelta: {x: 340.6206, y: 0}
+  m_AnchoredPosition: {x: 241.20215, y: 0}
+  m_SizeDelta: {x: 482.4043, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9063335136942940355
 MonoBehaviour:
@@ -10620,7 +10625,7 @@ MonoBehaviour:
     m_Top: 23
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -7,6 +8,10 @@ namespace DinoGame.UI.Menu
 {
     public sealed class DinoSelectionProfileView : MonoBehaviour
     {
+        [Header("Fill Bar Animation")]
+        [SerializeField] private float fillAnimDuration = 0.65f;
+        [SerializeField] private float fillStagger = 0.1f;
+
         [SerializeField] private TMP_Text creatureCodeText;
         [SerializeField] private TMP_Text creatureNameText;
         [SerializeField] private TMP_Text infamyLevelText;
@@ -16,10 +21,20 @@ namespace DinoGame.UI.Menu
         [SerializeField] private TMP_Text staminaPercentText;
         [SerializeField] private TMP_Text growthLevelText;
         [SerializeField] private Image previewIconImage;
+        [SerializeField] private Image attackFillBar;
+        [SerializeField] private Image defenseFillBar;
+        [SerializeField] private Image staminaFillBar;
+
+        private readonly List<Coroutine> fillAnimations = new();
 
         private void Awake()
         {
             TryAutoBind();
+        }
+
+        private void OnDisable()
+        {
+            UIFillBarAnimator.StopAll(fillAnimations, this);
         }
 
         public void Bind(CreatureProfile profile)
@@ -39,15 +54,6 @@ namespace DinoGame.UI.Menu
             if (infamyTierText != null)
                 infamyTierText.text = profile.infamyTierLabel;
 
-            if (attackPercentText != null)
-                attackPercentText.text = FormatPercent(profile.attackPercent);
-
-            if (defensePercentText != null)
-                defensePercentText.text = FormatPercent(profile.defensePercent);
-
-            if (staminaPercentText != null)
-                staminaPercentText.text = FormatPercent(profile.staminaPercent);
-
             if (growthLevelText != null)
             {
                 string stageLabel = GrowthUpgradeUtility.GetStageLabel(profile);
@@ -55,14 +61,30 @@ namespace DinoGame.UI.Menu
                 growthLevelText.text = $"● {stageLabel} {growthLevel}";
             }
 
-            if (previewIconImage != null && profile.previewIcon != null)
-            {
-                previewIconImage.sprite = profile.previewIcon;
-                previewIconImage.enabled = true;
-            }
+            CreaturePortraitUtility.ApplyProfilePortrait(previewIconImage, profile);
+
+            UIFillBarAnimator.StopAll(fillAnimations, this);
+
+            float delay = 0f;
+            AnimateStatRow(attackFillBar, attackPercentText, profile.attackPercent, delay);
+            delay += fillStagger;
+            AnimateStatRow(defenseFillBar, defensePercentText, profile.defensePercent, delay);
+            delay += fillStagger;
+            AnimateStatRow(staminaFillBar, staminaPercentText, profile.staminaPercent, delay);
         }
 
-        private static string FormatPercent(int value) => $"{value} %";
+        private void AnimateStatRow(Image fillBar, TMP_Text percentText, int targetPercent, float delay)
+        {
+            UIFillBarAnimator.Animate(
+                this,
+                fillAnimations,
+                fillBar,
+                percentText,
+                targetPercent / 100f,
+                targetPercent,
+                delay,
+                fillAnimDuration);
+        }
 
         private void TryAutoBind()
         {
@@ -94,12 +116,12 @@ namespace DinoGame.UI.Menu
                 Transform stats = statsPanel.Find("Stats");
                 if (stats != null)
                 {
-                    if (attackPercentText == null)
-                        attackPercentText = FindPercentText(stats, "attackRow");
-                    if (defensePercentText == null)
-                        defensePercentText = FindPercentText(stats, "defenseRow");
-                    if (staminaPercentText == null)
-                        staminaPercentText = FindPercentText(stats, "StaminaRow");
+                    if (attackPercentText == null || attackFillBar == null)
+                        BindStatRow(stats, "attackRow", ref attackPercentText, ref attackFillBar);
+                    if (defensePercentText == null || defenseFillBar == null)
+                        BindStatRow(stats, "defenseRow", ref defensePercentText, ref defenseFillBar);
+                    if (staminaPercentText == null || staminaFillBar == null)
+                        BindStatRow(stats, "StaminaRow", ref staminaPercentText, ref staminaFillBar);
                 }
 
                 Transform infamyLevels = statsPanel.Find("infamyLevels");
@@ -139,14 +161,46 @@ namespace DinoGame.UI.Menu
             }
         }
 
-        private static TMP_Text FindPercentText(Transform statsRoot, string rowName)
+        private static void BindStatRow(
+            Transform statsRoot,
+            string rowName,
+            ref TMP_Text percentText,
+            ref Image fillBar)
         {
             Transform row = statsRoot.Find(rowName);
             if (row == null)
-                return null;
+                return;
+
+            if (percentText == null)
+                percentText = FindPercentText(row);
+
+            if (fillBar == null)
+                fillBar = FindFillBar(row);
+        }
+
+        private static TMP_Text FindPercentText(Transform row)
+        {
+            TMP_Text[] texts = row.GetComponentsInChildren<TMP_Text>(true);
+            for (int i = 0; i < texts.Length; i++)
+            {
+                if (texts[i].name.ToLowerInvariant().Contains("percent"))
+                    return texts[i];
+            }
 
             Transform percentTransform = row.Find("percentTxt");
             return percentTransform != null ? percentTransform.GetComponent<TMP_Text>() : null;
+        }
+
+        private static Image FindFillBar(Transform row)
+        {
+            Image[] images = row.GetComponentsInChildren<Image>(true);
+            for (int i = 0; i < images.Length; i++)
+            {
+                if (images[i].gameObject.name == "FillBar")
+                    return images[i];
+            }
+
+            return null;
         }
     }
 }

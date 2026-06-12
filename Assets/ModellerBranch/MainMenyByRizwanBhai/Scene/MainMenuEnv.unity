@@ -5399,7 +5399,8 @@ PrefabInstance:
       value: -19.599
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9097797061235536067, guid: 7c7af4c4a19be6748ab2194aac3fdd0b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c7af4c4a19be6748ab2194aac3fdd0b, type: 3}
@@ -7148,7 +7149,6 @@ GameObject:
   - component: {fileID: 1839157089}
   - component: {fileID: 1839157088}
   - component: {fileID: 1839157087}
-  - component: {fileID: 1839157090}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: WorldCreator
@@ -7231,105 +7231,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 827975869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1839157090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839157084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f710250abab6f24a954bdf3c3c1ac64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: sc.vegetationspawner.runtime::sc.terrain.vegetationspawner.VegetationSpawner
-  seed: 0
-  terrains:
-  - {fileID: 1839157087}
-  visibleTerrainsOnly: 0
-  treeTypes:
-  - enabled: 1
-    name: Bush 06
-    seed: 68863
-    probability: 39.8
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: TMPWC835129437645868_0
-      layerID: 0
-      threshold: 0.303
-    instanceCount: 0
-    prefabs:
-    - index: 0
-      probability: 100
-      prefab: {fileID: 4431870828044986682, guid: 009ba60909e8ac3488723fa7dd4475bd,
-        type: 3}
-    distance: 13.6
-    scaleRange: {x: 0.8, y: 1.2}
-    sinkAmount: 0.61
-  grassPrefabs:
-  - enabled: 1
-    name: grass 3b
-    seed: 45644
-    probability: 25
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: TMPWC835129437645868_0
-      layerID: 0
-      threshold: 0.213
-    instanceCount: 0
-    index: 0
-    type: 1
-    renderAsBillboard: 0
-    prefab: {fileID: 0}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 2.85
-    billboard: {fileID: 2800000, guid: 3bd05607621351348b87f38532a43c63, type: 3}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0.97727275, y: 1.8181816}
-    minMaxWidth: {x: 0.8, y: 1.540909}
-    noiseSize: 0.1
-  terrainSettings:
-    drawTreesAndFoliage: 1
-    preservePrefabLayer: 1
-    treeLightProbes: 0
-    treeDistance: 1000
-    billboardStart: 300
-    maxMeshTrees: 50
-    detailScattermode: 0
-    grassDistance: 200
-    grassDensity: 1
-    windStrength: 0.15
-    windSpeed: 1
-    windFrequency: 2
-    wintTint: {r: 1, g: 1, b: 1, a: 1}
-  cellSize: 64
-  cellDivisions: 4
-  highPrecisionCollision: 1
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  terrainMinMaxHeight: {x: -20.02, y: -15.84372}
-  detailResolution: 256
-  detailResolutionIndex: 0
-  grassPatchSize: 128
-  grassPatchSizeIndex: 4
-  tempColliders: []
-  waterHeight: 0
-  autoRespawnTrees: 1
 --- !u!1 &1861022161
 GameObject:
   m_ObjectHideFlags: 0

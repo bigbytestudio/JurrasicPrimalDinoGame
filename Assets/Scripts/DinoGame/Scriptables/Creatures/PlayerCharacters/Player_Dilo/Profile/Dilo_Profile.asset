@@ -15,20 +15,37 @@ MonoBehaviour:
   creatureId: Dilo
   displayName: Dilophosaurus
   creatureCode: BAY-001
-  unlockedByDefault: 1
-  bonePurchaseCost: 500
   defaultTeam: 0
   prefab: {fileID: 2680474171029873890, guid: 92e674b834cf1eb4f82169d64f1edcf8, type: 3}
-  previewIcon: {fileID: 21300000, guid: 75586b8fd91a53a42a7246229fd5ae64, type: 3}
+  unlockedByDefault: 1
+  bonePurchaseCost: 500
+  profilePortrait: {fileID: 832451240, guid: 4edf45456a5f217409dd27107f7b2a32, type: 3}
+  cardPortrait: {fileID: 465164032, guid: 4edf45456a5f217409dd27107f7b2a32, type: 3}
+  cardPortraitSize: {x: 305, y: 185}
+  previewIcon: {fileID: 0}
   infamyLevel: 40
   infamyTierLabel: HARMLESS
-  attackPercent: 74
-  defensePercent: 58
-  staminaPercent: 79
+  attackPercent: 5
+  defensePercent: 12
+  staminaPercent: 15
   growthLevel: 1
   maxGrowthLevel: 4
   growthUpgradeDnaCost: 15
   growthStageLabel: DEVELOPMENT STAGE
+  dietTypeLabel: Carnivore
+  sizeMeters: 2.5
+  sizeMetersPerStage:
+  - 2.5
+  - 4.9
+  - 6.5
+  - 8
+  growthHealthFill: 0.75
+  growthDamageFill: 0.74
+  growthSpeedFill: 0.85
+  growthSwimFill: 0.45
+  lifeSleepFill: 0.7
+  lifeWaterFill: 0.7
+  lifeHungerFill: 0.7
   maxHealth: 100
   stamina: 100
   moveSpeed: 6

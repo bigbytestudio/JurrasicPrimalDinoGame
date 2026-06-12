@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b3f030196a3204298f12aa5a53e684, type: 3}
+  m_Name: Ptera_Profile
+  m_EditorClassIdentifier: DinoGame::DinoGame.Data.CreatureProfile
+  creatureId: Ptera
+  displayName: Pteranodon
+  creatureCode: PTER-001
+  defaultTeam: 2
+  prefab: {fileID: 0}
+  unlockedByDefault: 0
+  bonePurchaseCost: 3500
+  profilePortrait: {fileID: 426648117, guid: 4edf45456a5f217409dd27107f7b2a32, type: 3}
+  cardPortrait: {fileID: -511339669, guid: 4edf45456a5f217409dd27107f7b2a32, type: 3}
+  cardPortraitSize: {x: 305, y: 205}
+  previewIcon: {fileID: 0}
+  infamyLevel: 1
+  infamyTierLabel: GROWTH LEVEL
+  attackPercent: 33
+  defensePercent: 36
+  staminaPercent: 54
+  growthLevel: 1
+  maxGrowthLevel: 4
+  growthUpgradeDnaCost: 15
+  growthStageLabel: DEVELOPMENT STAGE
+  dietTypeLabel: Carnivore
+  sizeMeters: 2.5
+  sizeMetersPerStage:
+  - 2.5
+  - 4.9
+  - 6.5
+  - 8
+  growthHealthFill: 0.75
+  growthDamageFill: 0.65
+  growthSpeedFill: 0.8
+  growthSwimFill: 0.5
+  lifeSleepFill: 0.7
+  lifeWaterFill: 0.6
+  lifeHungerFill: 0.55
+  maxHealth: 100
+  stamina: 100
+  moveSpeed: 6
+  sprintSpeed: 25
+  turnSpeed: 500
+  detectionRadius: 18
+  fieldOfView: 140
+  movementStrategy: {fileID: 11400000, guid: 65f28c999f1f4884aa1b313a8d4fdc65, type: 2}
+  attackStrategies:
+  - {fileID: 11400000, guid: 97e298026de34b641b401859f5e0a570, type: 2}
+  aiStrategy: {fileID: 0}
+  perceptionStrategy: {fileID: 11400000, guid: 32ce83100477c794aa0f933cfc9054f9, type: 2}

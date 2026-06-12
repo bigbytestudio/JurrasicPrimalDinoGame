@@ -517,6 +517,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SplashManager
   loadingScreen: {fileID: 1662166817}
   privacyPolicyPanel: {fileID: 0}
+  creatureRegistryPrefab: {fileID: 1000000003, guid: f7e6d5c4b3a2918071625344f5e6d7c8,
+    type: 3}
 --- !u!1 &1662166817
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,8 +15,8 @@ namespace DinoGame.UI.Menu
         [SerializeField] private GameObject insufficientDnaPopup;
         [SerializeField] private Button yesButton;
         [SerializeField] private Button noButton;
-        [SerializeField] private Button insufficientQuitButton;
-        [SerializeField] private Button insufficientTryAgainButton;
+        [SerializeField] private Button insufficientCancelButton;
+        [SerializeField] private Button getDnaButton;
         [SerializeField] private TMP_Text upgradeCostText;
 
         private CreatureProfile pendingProfile;
@@ -70,8 +70,7 @@ namespace DinoGame.UI.Menu
                 upgradeCostText.text = $"{GrowthUpgradeUtility.GetUpgradeCost(profile)} DNA";
 
             HideInsufficientDna();
-            if (confirmationPopup != null)
-                confirmationPopup.SetActive(true);
+            ShowPopup(confirmationPopup);
         }
 
         private void HandleYesClicked()
@@ -106,9 +105,17 @@ namespace DinoGame.UI.Menu
             HideConfirmation();
         }
 
-        private void HandleInsufficientDismiss()
+        private void HandleInsufficientCancel()
         {
             HideInsufficientDna();
+        }
+
+        private void HandleGetDna()
+        {
+            HideInsufficientDna();
+            MenuManager.Instance?.OpenPanel(
+                MenuPanelId.Store,
+                MenuContext.ForStore(StoreTab.Dna, toggleCloseWhenSameTab: false));
         }
 
         private void HideConfirmation()
@@ -122,8 +129,16 @@ namespace DinoGame.UI.Menu
 
         private void ShowInsufficientDna()
         {
-            if (insufficientDnaPopup != null)
-                insufficientDnaPopup.SetActive(true);
+            ShowPopup(insufficientDnaPopup);
+        }
+
+        private static void ShowPopup(GameObject popup)
+        {
+            if (popup == null)
+                return;
+
+            popup.SetActive(true);
+            popup.transform.SetAsLastSibling();
         }
 
         private void HideInsufficientDna()
@@ -146,11 +161,11 @@ namespace DinoGame.UI.Menu
             if (noButton != null)
                 noButton.onClick.AddListener(HandleNoClicked);
 
-            if (insufficientQuitButton != null)
-                insufficientQuitButton.onClick.AddListener(HandleInsufficientDismiss);
+            if (insufficientCancelButton != null)
+                insufficientCancelButton.onClick.AddListener(HandleInsufficientCancel);
 
-            if (insufficientTryAgainButton != null)
-                insufficientTryAgainButton.onClick.AddListener(HandleInsufficientDismiss);
+            if (getDnaButton != null)
+                getDnaButton.onClick.AddListener(HandleGetDna);
         }
 
         private void UnwireButtons()
@@ -161,11 +176,11 @@ namespace DinoGame.UI.Menu
             if (noButton != null)
                 noButton.onClick.RemoveListener(HandleNoClicked);
 
-            if (insufficientQuitButton != null)
-                insufficientQuitButton.onClick.RemoveListener(HandleInsufficientDismiss);
+            if (insufficientCancelButton != null)
+                insufficientCancelButton.onClick.RemoveListener(HandleInsufficientCancel);
 
-            if (insufficientTryAgainButton != null)
-                insufficientTryAgainButton.onClick.RemoveListener(HandleInsufficientDismiss);
+            if (getDnaButton != null)
+                getDnaButton.onClick.RemoveListener(HandleGetDna);
         }
 
         private void TryAutoBind()
@@ -190,11 +205,11 @@ namespace DinoGame.UI.Menu
 
             if (insufficientDnaPopup != null)
             {
-                if (insufficientQuitButton == null)
-                    insufficientQuitButton = FindButton(insufficientDnaPopup.transform, "quitBtn");
+                if (insufficientCancelButton == null)
+                    insufficientCancelButton = FindButton(insufficientDnaPopup.transform, "quitBtn");
 
-                if (insufficientTryAgainButton == null)
-                    insufficientTryAgainButton = FindButton(insufficientDnaPopup.transform, "tryAgainBtn");
+                if (getDnaButton == null)
+                    getDnaButton = FindButton(insufficientDnaPopup.transform, "tryAgainBtn");
             }
         }
 

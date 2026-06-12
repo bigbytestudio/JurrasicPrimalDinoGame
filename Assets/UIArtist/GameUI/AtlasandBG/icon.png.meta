@@ -879,7 +879,7 @@ TextureImporter:
         width: 204
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -901,7 +901,7 @@ TextureImporter:
         width: 203
         height: 225
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -923,7 +923,7 @@ TextureImporter:
         width: 218
         height: 175
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -932,6 +932,28 @@ TextureImporter:
       bones: []
       spriteID: 7092739d1c9c8df4d8e0e544aa5acd8e
       internalID: -766647175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editIcon
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 1305
+        width: 210
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40db2afc241c60d4e91f8f8e0b3a2750
+      internalID: -578347440
       vertices: []
       indices: 
       edges: []
@@ -961,6 +983,7 @@ TextureImporter:
       dinoidleIcon: 2135570212
       discordIcon: -1680132162
       dnaIcon: -2069948866
+      editIcon: -578347440
       freeIcon: 658143278
       giftbox: 1873741660
       graphicsIcon: 2023721661

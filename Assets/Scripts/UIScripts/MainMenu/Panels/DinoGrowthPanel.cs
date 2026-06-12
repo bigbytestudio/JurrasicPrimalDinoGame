@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using DinoGame.Data;
 
 namespace DinoGame.UI.Menu
@@ -9,8 +8,7 @@ namespace DinoGame.UI.Menu
     {
         [SerializeField] private Button closeButton;
         [SerializeField] private Button upgradeGrowthButton;
-        [SerializeField] private TMP_Text creatureNameText;
-        [SerializeField] private TMP_Text growthLevelText;
+        [SerializeField] private DinoGrowthPanelView panelView;
 
         private CreatureProfile profile;
         private System.Action onClosed;
@@ -48,16 +46,23 @@ namespace DinoGame.UI.Menu
             profile = creatureProfile;
             onClosed = closedCallback;
             TryAutoBind();
-            RefreshGrowthDisplay();
+            RefreshDisplay();
 
             if (closeButton != null)
                 closeButton.onClick.AddListener(Close);
 
             if (upgradeGrowthButton != null)
                 upgradeGrowthButton.onClick.AddListener(HandleUpgradeGrowth);
+        }
 
-            if (creatureNameText != null && profile != null)
-                creatureNameText.text = profile.displayName;
+        private void OnEnable()
+        {
+            GrowthUpgradeUtility.GrowthLevelChanged += HandleGrowthLevelChanged;
+        }
+
+        private void OnDisable()
+        {
+            GrowthUpgradeUtility.GrowthLevelChanged -= HandleGrowthLevelChanged;
         }
 
         private void OnDestroy()
@@ -69,25 +74,22 @@ namespace DinoGame.UI.Menu
                 upgradeGrowthButton.onClick.RemoveListener(HandleUpgradeGrowth);
         }
 
+        private void HandleGrowthLevelChanged()
+        {
+            RefreshDisplay();
+        }
+
         private void HandleUpgradeGrowth()
         {
             if (profile == null || GrowthUpgradeUtility.IsMaxGrowth(profile))
                 return;
 
-            GrowthUpgradePopupController.ShowConfirmation(profile, RefreshGrowthDisplay);
+            GrowthUpgradePopupController.ShowConfirmation(profile, RefreshDisplay);
         }
 
-        private void RefreshGrowthDisplay()
+        private void RefreshDisplay()
         {
-            if (profile == null)
-                return;
-
-            if (growthLevelText != null)
-            {
-                string stageLabel = GrowthUpgradeUtility.GetStageLabel(profile);
-                int growthLevel = GrowthUpgradeUtility.GetGrowthLevel(profile);
-                growthLevelText.text = $"● {stageLabel} {growthLevel}";
-            }
+            panelView?.Bind(profile);
         }
 
         private void Close()
@@ -110,31 +112,17 @@ namespace DinoGame.UI.Menu
                 }
             }
 
-            if (creatureNameText == null)
-            {
-                TMP_Text[] texts = GetComponentsInChildren<TMP_Text>(true);
-                for (int i = 0; i < texts.Length; i++)
-                {
-                    if (texts[i].text == "DINO PROFILE")
-                    {
-                        creatureNameText = texts[i];
-                        break;
-                    }
-                }
-            }
+            if (panelView == null)
+                panelView = GetComponent<DinoGrowthPanelView>();
+
+            if (panelView == null)
+                panelView = gameObject.AddComponent<DinoGrowthPanelView>();
 
             if (upgradeGrowthButton == null)
             {
                 Transform upgradeTransform = transform.Find("Popup/upgradeGrowthBtn");
                 if (upgradeTransform != null)
                     upgradeGrowthButton = upgradeTransform.GetComponent<Button>();
-            }
-
-            if (growthLevelText == null)
-            {
-                Transform growthStage = transform.Find("Popup/GROWTH STAGE");
-                if (growthStage != null)
-                    growthLevelText = growthStage.GetComponent<TMP_Text>();
             }
         }
     }
