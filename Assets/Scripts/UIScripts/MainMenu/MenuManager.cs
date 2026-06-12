@@ -263,7 +263,7 @@ namespace DinoGame.UI.Menu
                 && (activeOverlay.PanelId == MenuPanelId.Settings
                     || activeOverlay.PanelId == MenuPanelId.Profile);
 
-            currencyDisplay.gameObject.SetActive(!hideCurrency);
+            currencyDisplay.SetVisible(!hideCurrency);
         }
     }
 }

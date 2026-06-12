@@ -52,6 +52,9 @@ namespace DinoGame.UI.Menu
         [SerializeField] private float closeDuration = 0.22f;
         [SerializeField] private float cardRevealDelay = 0.18f;
 
+        [Header("Action Button Animation")]
+        [SerializeField] private float growthButtonAnimDuration = 0.22f;
+
         private readonly List<DinoSelectionCreatureCardView> spawnedCards = new();
         private readonly List<RectTransform> animatedCreatureCards = new();
         private readonly List<RectTransform> animatedSections = new();
@@ -60,6 +63,7 @@ namespace DinoGame.UI.Menu
         private bool isClosing;
         private Coroutine cardDominoRoutine;
         private Coroutine panelRevealRoutine;
+        private bool suppressGrowthButtonAnimation = true;
 
         public override MenuPanelId PanelId => MenuPanelId.DinoSelection;
 
@@ -102,6 +106,7 @@ namespace DinoGame.UI.Menu
 
             if (isClosing)
             {
+                StopGrowthButtonTweens();
                 UIDominoTween.StopTweens(animatedCreatureCards);
                 animatedCreatureCards.Clear();
                 UIDominoTween.StopTweens(animatedSections);
@@ -109,6 +114,7 @@ namespace DinoGame.UI.Menu
                 return;
             }
 
+            StopGrowthButtonTweens();
             StopCardDomino();
             StopPanelReveal();
         }
@@ -117,6 +123,7 @@ namespace DinoGame.UI.Menu
         {
             base.OnPanelOpened(context);
             isClosing = false;
+            suppressGrowthButtonAnimation = true;
             RefreshCreatureList();
             StopPanelRevealRoutine();
             panelRevealRoutine = StartCoroutine(PlayPanelRevealRoutine());
@@ -288,6 +295,7 @@ namespace DinoGame.UI.Menu
 
             PreparePanelRevealBeforeFirstFrame();
             PlayPanelReveal();
+            suppressGrowthButtonAnimation = false;
             panelRevealRoutine = null;
         }
 
@@ -515,13 +523,51 @@ namespace DinoGame.UI.Menu
             if (buyPriceText != null && hasSelection && !unlocked)
                 buyPriceText.text = selectedProfile.bonePurchaseCost.ToString();
 
+            SetGrowthButtonsVisible(unlocked);
+        }
+
+        private void SetGrowthButtonsVisible(bool visible)
+        {
+            bool immediate = suppressGrowthButtonAnimation;
+            int pending = 0;
+
+            void OnComplete()
+            {
+                pending--;
+                if (pending <= 0)
+                    RebuildActionButtonsLayout();
+            }
+
             if (upgradeDinoButton != null)
-                upgradeDinoButton.gameObject.SetActive(unlocked);
+            {
+                pending++;
+                UIVisibilityTween.SetVisible(
+                    upgradeDinoButton,
+                    visible,
+                    growthButtonAnimDuration,
+                    onComplete: OnComplete,
+                    immediate: immediate);
+            }
 
             if (dinoGrowthButton != null)
-                dinoGrowthButton.gameObject.SetActive(unlocked);
+            {
+                pending++;
+                UIVisibilityTween.SetVisible(
+                    dinoGrowthButton,
+                    visible,
+                    growthButtonAnimDuration,
+                    onComplete: OnComplete,
+                    immediate: immediate);
+            }
 
-            RebuildActionButtonsLayout();
+            if (pending == 0)
+                RebuildActionButtonsLayout();
+        }
+
+        private void StopGrowthButtonTweens()
+        {
+            UIVisibilityTween.Stop(upgradeDinoButton);
+            UIVisibilityTween.Stop(dinoGrowthButton);
         }
 
         private void RebuildActionButtonsLayout()
